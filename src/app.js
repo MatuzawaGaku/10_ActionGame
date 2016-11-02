@@ -145,7 +145,7 @@ var Player = cc.Sprite.extend({
       for (i = 0; i < 7; i++) {　　　　　　
          for (j = 0; j < 10; j++) {
             if (level[i][j] == 3) {
-               this.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 2);
+               this.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 1.2);
                playerPosition = {
                   x: j,
                   y: i
@@ -191,7 +191,7 @@ var Player = cc.Sprite.extend({
 
 
       // スプライトシートをキャッシュに登録
-      cc.spriteFrameCache.addSpriteFrames(res.sir, res.player_plist);
+      cc.spriteFrameCache.addSpriteFrames(res.player_plist, res.player_sheet);
 
       // スプライトフレームを取得 player01,player02はplistの中で定義されいいる
       var frame1 = cc.spriteFrameCache.getSpriteFrame("player01");
@@ -210,7 +210,7 @@ var Player = cc.Sprite.extend({
       //永久ループのアクションを定義
       var action = new cc.RepeatForever(new cc.animate(animation));
       //実行
-      this.initWithFile(res.sir);
+      this.initWithFile(res.player_sheet);
       this.runAction(action);
 
       this.scheduleUpdate();

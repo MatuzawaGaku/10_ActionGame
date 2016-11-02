@@ -11,7 +11,7 @@ var res = {
   glass_frames : "res/glass_frames.png",
   item_health : "res/item_health.png",
   particle_dot : "res/particle_dot.png",
-  sir : "res/sir_awesome_frames.png",
+  player_sheet : "res/sir_awesome_frames.png",
   slime_green : "res/slime_green_frames.png",
   slime_red : "res/slime_red_frames.png",
   sparkle : "res/sparkle_frames.png",
