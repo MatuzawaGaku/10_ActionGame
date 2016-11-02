@@ -18,11 +18,12 @@ var res = {
   title : "res/title.png",
   ui_pauge : "res/ui_gauge_fill.png",
   ui_panels : "res/ui_panels.png",
-  zombie : "res/zombie_frames.png",
+  zombie_frames : "res/zombie_frames.png",
   leftBtn : "res/leftbutton.png",
   rightBtn : "res/rightbutton.png",
   jumpBtn : "res/jumpbutton.png",
-  player_plist : "res/player.plist"
+  player_plist : "res/player.plist",
+  zombie_plist : "res/zombie.plist"
 };
 
 var g_resources = [];

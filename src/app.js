@@ -31,6 +31,8 @@ var gameScene = cc.Scene.extend({
       this.addChild(player);
       var enemys = new enemyLayer();
       this.addChild(enemys);
+      var zombie = new zombieLayer();
+      this.addChild(zombie);
    }
 });
 
@@ -74,7 +76,7 @@ var levelLayer = cc.Layer.extend({
             switch (level[i][j]) {
                case 1:
                   var groundSprite = cc.Sprite.create(res.background_front);
-                  groundSprite.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 20);
+                  groundSprite.setPosition(tileSize / 2 + tileSize * j, 96 * (7.8 - i) - tileSize / 2);
                   this.addChild(groundSprite);
                   break;
                case 2:
@@ -145,7 +147,7 @@ var Player = cc.Sprite.extend({
       for (i = 0; i < 7; i++) {　　　　　　
          for (j = 0; j < 10; j++) {
             if (level[i][j] == 3) {
-               this.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 1.2);
+               this.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 2);
                playerPosition = {
                   x: j,
                   y: i
@@ -153,6 +155,7 @@ var Player = cc.Sprite.extend({
             }
          }
       }
+
       //this.schedule(this.working,0.08);
 
         /*// 2.　SpriteFrame　を利用しての歩行アニメーション
@@ -306,7 +309,7 @@ var keylistener = cc.EventListener.create({
          rightBtn.setOpacity(255);
          leftBtn.setOpacity(128);
       }
-      if (keyCode == 32 || keycode == 38) { // スペースキーか上矢印キーでジャンプ
+      if (keyCode == 32 || keyCode == 38) { // スペースキーか上矢印キーでジャンプ
          if (player.jumpFlag == false && player.ySpeed == 0) player.ySpeed = 9;
          player.jumpFlag = true;
          jumpBtn.setOpacity(255);
