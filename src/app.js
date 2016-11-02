@@ -39,7 +39,7 @@ var backgroundLayer = cc.Layer.extend({
    ctor: function() {
       this._super();
 
-      var backgroundSprite = cc.Sprite.create(res.background_png);
+      var backgroundSprite = cc.Sprite.create(res.background_back);
       var size = backgroundSprite.getContentSize();
       //console.log(size);
       this.addChild(backgroundSprite);
@@ -47,6 +47,11 @@ var backgroundLayer = cc.Layer.extend({
       backgroundSprite.setPosition(winSize.width / 2, winSize.height / 2);
       //背景画像を画面の大きさに合わせるためのScaling処理
       backgroundSprite.setScale(winSize.width / size.width, winSize.height / size.height);
+      var curtain = cc.Sprite.create(res.curtain);
+      var size = curtain.getContentSize();
+      this.addChild(curtain);
+      curtain.setPosition(winSize.width/9,winSize.height/2);
+      curtain.setScale(winSize.height/size.height);
    }
 
 });
@@ -59,12 +64,12 @@ var levelLayer = cc.Layer.extend({
          for (j = 0; j < 10; j++) {
             switch (level[i][j]) {
                case 1:
-                  var groundSprite = cc.Sprite.create(res.ground_png);
-                  groundSprite.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 2);
+                  var groundSprite = cc.Sprite.create(res.background_front);
+                  groundSprite.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 20);
                   this.addChild(groundSprite);
                   break;
                case 2:
-                  var blockSprite = cc.Sprite.create(res.block_png);
+                  var blockSprite = cc.Sprite.create(res.block);
                   blockSprite.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 2);
                   this.addChild(blockSprite);
                   break;
@@ -84,20 +89,20 @@ var playerLayer = cc.Layer.extend({
       //ショッピングカートを操作するレイヤー
 
       //左ボタン
-      leftBtn = cc.Sprite.create(res.leftbutton_png);
+      leftBtn = cc.Sprite.create(res.leftbutton);
       this.addChild(leftBtn, 0);
       leftBtn.setPosition(60, 40);
       leftBtn.setOpacity(128);
       leftBtn.setTag(1);
       //右ボタン
-      rightBtn = cc.Sprite.create(res.rightbutton_png);
+      rightBtn = cc.Sprite.create(res.rightbutton);
       this.addChild(rightBtn, 0);
       rightBtn.setPosition(150, 40);
       rightBtn.setOpacity(128);
       rightBtn.setTag(2);
 
       //ジャンプボタン
-      jumpBtn = cc.Sprite.create(res.rightbutton_png);
+      jumpBtn = cc.Sprite.create(res.jumpbutton);
       jumpBtn.setRotation(-90);
       this.addChild(jumpBtn, 0);
       jumpBtn.setPosition(winSize.width - 60, 40);
@@ -135,13 +140,13 @@ var Player = cc.Sprite.extend({
          }
       }
       //this.schedule(this.working,0.08);
-      /*
-        // 2.　SpriteFrame　を利用しての歩行アニメーション
+
+        /*// 2.　SpriteFrame　を利用しての歩行アニメーション
           //スプライトフレームを格納する配列
           var animationframe = [];
           //スプライトフレームを作成
-          var frame1 = new cc.SpriteFrame(res.player01_png, cc.rect(0, 0, 96, 96));
-          var frame2 = new cc.SpriteFrame(res.player02_png, cc.rect(0, 0, 96, 96));
+          var frame1 = new cc.SpriteFrame(res.sir, cc.rect(0, 0, 96, 96));
+          var frame2 = new cc.SpriteFrame(res.sir, cc.rect(0, 0, 96, 96));
           //スプライトフレームを配列に登録
           animationframe.push(frame1);
           animationframe.push(frame2);
@@ -151,11 +156,11 @@ var Player = cc.Sprite.extend({
           var action = new cc.RepeatForever(new cc.animate(animation));
           //実行
           this.runAction(action);
-      */
-      /*
+
+
           //３．テクスチャーからスプライトフレームを切り出す方法
               //スプライトフレームを格納する配列
-              var texture = cc.textureCache.addImage(res.player_sheet);
+              var texture = cc.textureCache.addImage(res.sir);
               //スプライトフレームを作成
               var frame1 = new cc.SpriteFrame.createWithTexture(texture, cc.rect(0, 0, 96, 96));
               var frame2 = new cc.SpriteFrame.createWithTexture(texture, cc.rect(96, 0, 96, 96));
@@ -168,27 +173,30 @@ var Player = cc.Sprite.extend({
               //永久ループのアクションを定義
               var action = new cc.RepeatForever(new cc.animate(animation));
               //実行
-              this.runAction(action);
-      */
+              this.runAction(action);*/
 
 
       // スプライトシートをキャッシュに登録
-      cc.spriteFrameCache.addSpriteFrames(res.player_plist, res.player_sheet);
+      cc.spriteFrameCache.addSpriteFrames(res.sir, res.player_plist);
 
       // スプライトフレームを取得 player01,player02はplistの中で定義されいいる
       var frame1 = cc.spriteFrameCache.getSpriteFrame("player01");
       var frame2 = cc.spriteFrameCache.getSpriteFrame("player02");
+      var frame3 = cc.spriteFrameCache.getSpriteFrame("player03");
+      var frame4 = cc.spriteFrameCache.getSpriteFrame("player04");
 
       //スプライトフレームを配列に登録
       var animationframe = [];
       animationframe.push(frame1);
       animationframe.push(frame2);
+      animationframe.push(frame3);
+      animationframe.push(frame4);
       //スプライトフレームの配列を連続再生するアニメーションの定義
       var animation = new cc.Animation(animationframe, 0.08);
       //永久ループのアクションを定義
       var action = new cc.RepeatForever(new cc.animate(animation));
       //実行
-      this.initWithFile(res.player_sheet);
+      this.initWithFile(res.sir);
       this.runAction(action);
 
       this.scheduleUpdate();
