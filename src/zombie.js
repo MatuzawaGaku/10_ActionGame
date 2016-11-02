@@ -62,11 +62,19 @@ var Zombie = cc.Sprite.extend({
     },
     update: function(dt) {
         this.FrameCount++;
-        //4フレームに1回　ゾンビの移動計算する
-        if (this.FrameCount % 4 == 0) {
-            //プレイヤーの位置をゾンビの位置の差を計算
+        if (this.FrameCount % 10 == 0) {
             var offset_x = player.getPosition().x - this.getPosition().x;
-            var offset_y = player.getPosition().y - this.getPosition().y;
+            var velocity_x = lerp(this.velocity.x, offset_x, 0.002);
+            this.velocity.x = velocity_x;
+            if (this.velocity.x <= 0)
+              this.setFlippedX(true);
+            if (this.velocity.x > 0)
+                this.setFlippedX(false);
+              this.setPosition(this.getPosition().x + this.velocity.x,this.getPosition().y);
         }
     }
 });
+
+function lerp(fStart, fEnd, fPercent) {
+  return fStart + ((fEnd - fStart) * fPercent);
+}
