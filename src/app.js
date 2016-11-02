@@ -1,7 +1,7 @@
 var size;
-//1:地面　2:ブロック　3:プレイヤ　4:ゾンビ 5:こうもり
+//1:地面　2:ブロック　3:プレイヤ　4:ゾンビ 5:こうもり 6:パネル
 var level = [
-   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+   [0, 0, 0, 0, 6, 0, 0, 0, 0, 0],
    [0, 0, 0, 0, 0, 0, 0, 5, 0, 0],
    [0, 0, 0, 0, 0, 0, 0, 2, 2, 2],
    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -52,6 +52,15 @@ var backgroundLayer = cc.Layer.extend({
       this.addChild(curtain);
       curtain.setPosition(winSize.width/9,winSize.height/2);
       curtain.setScale(winSize.height/size.height);
+      var curtain = cc.Sprite.create(res.curtain2);
+      this.addChild(curtain);
+      var size = curtain.getContentSize();
+      curtain.setPosition(winSize.width/1.15,winSize.height/2);
+      curtain.setScale(winSize.height/size.height);
+      var gamebg = cc.Sprite.create(res.background_light);
+      gamebg.setPosition(size.width/2,size.height/2);
+      gamebg.setScale(1,1);
+      this.addChild(gamebg);
    }
 
 });
@@ -73,6 +82,11 @@ var levelLayer = cc.Layer.extend({
                   blockSprite.setPosition(tileSize / 2 + tileSize * j, 96 * (7 - i) - tileSize / 2);
                   this.addChild(blockSprite);
                   break;
+              case 6:
+                   var ui_panels = cc.Sprite.create(res.ui_panels);
+                   ui_panels.setPosition(tileSize / 1 + tileSize * j, 96 * (7 - i) - tileSize / 10);
+                   this.addChild(ui_panels);
+                   break;
             }
          }
       }

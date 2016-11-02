@@ -6,6 +6,7 @@ var res = {
   block : "res/block48X48.png",
   coins : "res/coins.png",
   curtain : "res/curtain.png",
+  curtain2 : "res/curtain2.png",
   dead_sword : "res/dead_sword.png",
   glass_frames : "res/glass_frames.png",
   item_health : "res/item_health.png",
