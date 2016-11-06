@@ -39,6 +39,8 @@ var gameScene = cc.Scene.extend({
       this.addChild(slimeyellow);
       var slimered = new slimeredLayer();
       this.addChild (slimered);
+      var coins = new coinsLayer();
+      this.addChild(coins);
    }
 });
 

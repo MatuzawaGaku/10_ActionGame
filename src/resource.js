@@ -4,7 +4,7 @@ var res = {
   background_light : "res/background_light_shafts.png",
   bat_frames : "res/bat_frames.png",
   block : "res/block48X48.png",
-  coins : "res/coins.png",
+  coins_frames : "res/coins.png",
   curtain : "res/curtain.png",
   curtain2 : "res/curtain2.png",
   dead_sword : "res/dead_sword.png",
