@@ -33,6 +33,12 @@ var gameScene = cc.Scene.extend({
       this.addChild(enemys);
       var zombie = new zombieLayer();
       this.addChild(zombie);
+      var slimegreen = new slimegreenLayer();
+      this.addChild(slimegreen);
+      var slimeyellow = new slimeyellowLayer();
+      this.addChild(slimeyellow);
+      var slimered = new slimeredLayer();
+      this.addChild (slimered);
    }
 });
 
